@@ -1,0 +1,6 @@
+Request: User advise for low net worth users.
+
+Change:
+If user net worth is below the median, write another sentence: “If you’re not where you want to be financially, here’s how to move forward.”.
+In the part of sentence ‘here’s’, allow the user to click.
+Clicking this would open a section of the page. In it, write “If you’re not where you want to be financially, this is your reset — not your verdict. Breathe. Start where you are. Save a little. Invest a little. The goal isn’t catching up. It’s moving forward.”

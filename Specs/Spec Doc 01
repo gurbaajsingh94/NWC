@@ -1,0 +1,79 @@
+Request: 
+Build a Privacy-First Net Worth Benchmarker.
+
+Requirements:
+User should be able to plug in their net worth, or plug in relevant numbers to calculate their net worth, and the website will place the user against their peers.
+The website / page will not store any data on the server and will only store the data locally to protect privacy.
+
+Solution:
+create a modern minimalist UI 
+Create the following sections on the page:
+Header:
+This is a space to write down what the user will get on this website
+Write: “You know where you are going. We help you find where you are”.
+Interactive section:
+About user: 
+Phase 1: not required. Add a field called ‘Location:’
+Values exist as a dropdown. List of values:
+AB
+BC
+MB
+NB
+NL
+NS
+ON
+PEI
+QC
+SK
+User makes a selection here. Not mandatory.
+Add a field called ‘Age Group’.
+Values exist as a dropdown. List of values:
+<35
+35-44
+45-54
+55-64
+65+
+Net Worth: user can directly input their net worth here
+Find net worth:
+Assets: 
+Money in Banks
+Money in Investments
+Home or Property Value
+Vehicles
+Liabilities:
+Mortgage
+Credit Cards
+Car Loan
+Student Loan
+User net worth will be calculated as [(Sum of all Assets) - (Sum of all Liabilities)]
+Net Worth and Standing: 
+List the following:
+Net Worth
+Total Assets
+Total Liabilities
+Compare the user net worth based on the following to identify user standing:
+Comparison reference based on Canada Household Medians: 
+Age group = ‘<35’, Net Worth = $159,100
+Age group = ‘35-44’, Net Worth = $409,300
+Age group = ’45-54’, Net Worth = $675,800
+Age group = ’55-64’, Net Worth = $873,000
+Age group = ‘65+’, Net Worth = $739,000
+Compare the Total Net Worth of user against comparison reference numbers to find their standing. 
+For this, use their Net Worth against their bucket to find the difference. 
+Example 1- say the if the user is 34 years old and their net worth is calculated / input to be 450,000.
+34 years old falls in the bucket of <35 with a median net worth of $159,100 as noted above.
+450,000 - 159,100 = 290,900. Their net worth is 290,900 higher than the Canadian median.
+Example 2- say the if the user is 34 years old and their net worth is calculated / input to be 150,000
+34 years old falls in the bucket of <35 with a median net worth of $159,100 as noted above.
+150,000 - 159,100 = -9,100. Their net worth is -9,100 lower than a median Canadian household.
+If the user does not provide their age, use the number ‘$519,700’ for comparison.
+Once user standing is identified, notify the user in a sentence what their standing is.
+From Example 1 above, if the user is 34 years old and their net worth is calculated / input to be 450,000, write the following: “Your net worth is 290,900 higher than the Canadian median.”
+From Example 2 above, if the user is 34 years old and their net worth is calculated / input to be 150,000, write the following: “Your net worth is 9,100 lower than the Canadian median.”
+Phase 2: Create a slider bar to display user standing against median. (Not required). 
+The numbers should not be sent to the server and should be calculated right on the page to ensure user privacy.
+
+Success Criteria:
+User is able to input their net worth or calculate it by providing their assets and liabilities.
+User can see their Net Worth as calculated or input.
+User can see their standing compared to median Canadian and find out how high or low they stand in comparison.

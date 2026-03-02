@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNetWorth } from '@/hooks/use-net-worth';
 import { CurrencyInput } from '@/components/CurrencyInput';
 import { VisualBar } from '@/components/VisualBar';
@@ -7,10 +7,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Info, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { Info, TrendingUp, TrendingDown, Minus, ChevronDown, ChevronUp } from 'lucide-react';
 
 export default function Home() {
+  const [showAdvice, setShowAdvice] = useState(false);
   const {
     ageGroup, setAgeGroup,
     province, setProvince,
@@ -191,7 +193,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Card className="glass-panel rounded-3xl overflow-hidden border-border/40">
-                <div className="p-8">
+                <div className="p-8 pb-4">
                   <div className="mb-8">
                     <p className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-2">Estimated Net Worth</p>
                     <h2 className="text-5xl font-display font-bold text-foreground tracking-tight">
@@ -201,13 +203,44 @@ export default function Home() {
 
                   <VisualBar userValue={netWorth} medianValue={targetMedian} />
 
-                  <div className="mt-8 pt-6 border-t border-border/50">
+                  <div className="mt-8 pt-6 border-t border-border/50 space-y-4">
                     <p className="text-lg font-medium leading-relaxed text-foreground/90">
                       Your net worth is <span className={`font-bold ${isAboveMedian ? 'text-primary' : difference < 0 ? 'text-destructive' : ''}`}>{formatCurrency(Math.abs(difference))}</span>{' '}
                       {difference === 0 ? 'equal to' : isAboveMedian ? 'higher than' : 'lower than'}{' '}
                       the Canadian median
                       {ageGroup ? ` for ages ${ageGroup}` : ''}.
                     </p>
+
+                    {!isAboveMedian && (
+                      <div className="space-y-4">
+                        <p className="text-sm text-muted-foreground">
+                          If you’re not where you want to be financially,{' '}
+                          <button 
+                            onClick={() => setShowAdvice(!showAdvice)}
+                            className="text-primary font-semibold hover:underline underline-offset-4 inline-flex items-center gap-1 transition-colors"
+                          >
+                            here’s
+                            {showAdvice ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                          </button>{' '}
+                          how to move forward.
+                        </p>
+                        
+                        <AnimatePresence>
+                          {showAdvice && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="bg-primary/5 border border-primary/10 p-4 rounded-xl text-sm leading-relaxed text-foreground/80 italic">
+                                “If you’re not where you want to be financially, this is your reset — not your verdict. Breathe. Start where you are. Save a little. Invest a little. The goal isn’t catching up. It’s moving forward.”
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    )}
                   </div>
                 </div>
 
